@@ -199,7 +199,7 @@ end
 
 def init_notify
   unless $opts[:quiet]
-    if false
+    if app_is_running("Growl")
       $growler = Growl.new "localhost", Pathname.new($0).basename
       $growler.add_notification 'Error'
       $growler.add_notification 'No Results'
@@ -215,7 +215,7 @@ end
 
 def notify(notification, title, text)
   unless $opts[:quiet]
-    if false
+    if app_is_running("Growl")
       $growler.notify(notification, title, text)
     else
       $notifier.notify(text, :title => title)
